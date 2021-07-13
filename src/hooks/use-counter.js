@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 
-const useCounter = () => {
+const useCounter = (func) => {
   const [counter, setCounter] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setCounter((prevCounter) => prevCounter + 1);
+      setCounter(func);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [func]);
 
   return counter;
 };
